@@ -177,7 +177,7 @@ def send_url(event):
 def show_results(response):
     if response.status == 200:
         filename = response.text
-        document['prediction'].html = f'<img src="/output/{filename}" />'
+        document['prediction'].html = f'<img src="{filename}" />'
     else:
         document['prediction'].html = response.text
 

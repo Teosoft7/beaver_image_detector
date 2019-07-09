@@ -35,9 +35,9 @@ def display_predictions():
             f.write(display_prediction(image_path))
     return output_filename
 
-@app.route('/output/<filename>')
+@app.route('/ddb/outputs/<filename>')
 def send_output_file(filename):
-    with open(filename, "rb") as f:
+    with open(f'ddb/outputs/{filename}', "rb") as f:
         image = f.read()
     response = make_response(image)
     response.headers.set('Content-Type', 'image/png')
