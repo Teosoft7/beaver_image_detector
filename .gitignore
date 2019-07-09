@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Folders too big to track, stored in bucket
+annotations/
+data/
+models/
+pre_trained_model/
+trained_beaver_model.pb/
+training/
+
