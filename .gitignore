@@ -110,4 +110,6 @@ models/
 pre_trained_model/
 trained_beaver_model.pb/
 training/
+uploads/
+outputs/
 

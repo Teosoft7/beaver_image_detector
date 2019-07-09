@@ -1,4 +1,4 @@
-from ..tf_api_models import detection_functions
+from ..model_functions.detection_functions import display_prediction
 from flask import Flask, request, render_template, jsonify, make_response
 import requests
 import os
@@ -10,7 +10,7 @@ def index():
     """Returns the main page."""
     return render_template('index.html')
 
-image_path = "ddb/tf_api_models/test_images/image1.jpg"
+image_path = "ddb/test_images/image1.jpg"
 
 @app.route('/predict', methods=['GET', 'POST'])
 def display_predictions():
@@ -23,16 +23,16 @@ def display_predictions():
     # response.headers.set('Content-Type', 'image/png')
     url = request.json['url']
     img_id = str(hash(url))
-    output_filename = f'output_{img_id}'
+    output_filename = f'ddb/outputs/output_{img_id}'
     if not os.path.exists(output_filename):
         response = requests.get(url)
         img_id = str(hash(url))
-        image_path = f'upload_{img_id}.png'
+        image_path = f'ddb/uploads/upload_{img_id}.png'
         with open(image_path, 'wb') as f:
             f.write(response.content)  
 
         with open(output_filename, 'wb') as f:
-            f.write(detection_functions.display_prediction(image_path))
+            f.write(display_prediction(image_path))
     return output_filename
 
 @app.route('/output/<filename>')

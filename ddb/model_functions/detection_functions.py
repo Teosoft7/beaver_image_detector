@@ -31,12 +31,12 @@ def load_model_to_memory(model_path, detection_graph):
 
             
 # Path to frozen detection graph of trained beaver model.
-model_path = 'ddb/tf_api_models/trained_beaver_model.pb/frozen_inference_graph.pb'
+model_path = 'ddb/trained_beaver_model.pb/frozen_inference_graph.pb'
 detection_graph = tf.Graph()
 load_model_to_memory(model_path, detection_graph)
 
 # Path to labels
-path_to_labels = 'ddb/tf_api_models/beaver_label_map.pbtxt'
+path_to_labels = 'ddb/annotations/beaver_label_map.pbtxt'
 category_index = label_map_util.create_category_index_from_labelmap(path_to_labels, use_display_name=True)
 
 # Size, in inches, of the output images

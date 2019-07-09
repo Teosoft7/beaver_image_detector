@@ -161,11 +161,17 @@ def handleFileSelect(evt):
     
 @bind("#predict", "click")
 def send_url(event):
+    url = document['url'].value
+    if not url.startswith('http'):
+        document['prediction'].html = 'not a url'
+        return
+    else:
+        document['prediction'].html = 'processing image'
     req = ajax.ajax()
     req.bind('complete', show_results)
     req.open('POST', '/predict', True)
     req.set_header('content-type','application/json')
-    data = {'url': document['url'].value}
+    data = {'url': url}
     req.send(json.dumps(data))
 
 def show_results(response):
