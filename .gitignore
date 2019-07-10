@@ -112,4 +112,4 @@ trained_beaver_model.pb/
 training/
 uploads/
 outputs/
-
+ssd_inception_v2_coco_train/
