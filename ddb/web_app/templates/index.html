@@ -100,7 +100,6 @@
                 check it out on GitHub.
             </a>
         </div>
-        <img class="mx-auto rounded-circle" src="/static/img/profile.jpg" alt="">
         <h3 class="mb-0">Natasha Kacoroski</h3>
         <div class="subheading mb-5">Data Scientist
         </div>
@@ -177,7 +176,7 @@ def send_url(event):
 def show_results(response):
     if response.status == 200:
         filename = response.text
-        document['prediction'].html = f'<img src="{filename}" />'
+        document['prediction'].html = f'<img style="width:100%" src="{filename}" />'
     else:
         document['prediction'].html = response.text
 
