@@ -113,3 +113,4 @@ training/
 uploads/
 outputs/
 ssd_inception_v2_coco_train/
+ssd_inception_v2_coco_eval/

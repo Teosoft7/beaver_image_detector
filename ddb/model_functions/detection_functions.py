@@ -31,12 +31,12 @@ def load_model_to_memory(model_path, detection_graph):
 
             
 # Path to frozen detection graph of trained beaver model.
-model_path = 'ddb/trained_beaver_model.pb/frozen_inference_graph.pb'
+model_path = './ddb/ssd_inception_v2_coco_train/model1_inference_graph.pb/frozen_inference_graph.pb'
 detection_graph = tf.Graph()
 load_model_to_memory(model_path, detection_graph)
 
 # Path to labels
-path_to_labels = 'ddb/annotations/beaver_label_map.pbtxt'
+path_to_labels = './ddb/annotations/beaver_label_map.pbtxt'
 category_index = label_map_util.create_category_index_from_labelmap(path_to_labels, use_display_name=True)
 
 # Size, in inches, of the output images
@@ -119,9 +119,9 @@ def predict_image(image_path):
         category_index,
         instance_masks=output_dict.get('detection_masks'),
         use_normalized_coordinates=True,
-        line_thickness=10)
-    plt.figure(figsize=(8,12))
-    plt.imshow()
+        line_thickness=8)
+    plt.figure(figsize=(16,24))
+    plt.imshow(image_np)
 
     
 def display_prediction(image_path):

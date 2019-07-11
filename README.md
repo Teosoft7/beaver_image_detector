@@ -1,5 +1,5 @@
 ## Business Understanding
-Wildlife cameras are a great way to monitor animals remotely, however, because they are usually motion-activated, they produce large quantities of image data that needs to be processed, which is a time consuming task. To decrease the amount of time needed for image processing from wildlife cameras, I built an object detection algorithm for species identification. To create my model I used data from the Eastside Audubon Society Beaver Project.
+Wildlife cameras are a great way to monitor animals remotely, however, because they are usually motion-activated, they produce large quantities of image data that needs to be processed, which is a time consuming task. To decrease the amount of time needed for image processing from wildlife cameras, I built an object detection algorithm for species identification. To create my model I used data from the Eastside Audubon Society Beaver Project as a case study for beaver identification in images.
 
 ## Data Understanding
 In partnership with other stakeholders, the Eastside Audubon Society is setting up wildife cameras to better understand the beaver population around Lake Sammamish in Washington State. Currently two cameras are set up near a beaver lodge on Lake Sammamish. The dataset consists of over 2,000 photos, of which approximately 70% contain beavers. The remaining images contain birds, raccoons, roof rats, squirrels, frogs, or no animals. 
@@ -7,10 +7,11 @@ In partnership with other stakeholders, the Eastside Audubon Society is setting 
 ## Data Preparation
 Data was downloaded from a shared Dropbox account as a zip file. Images were uploaded to Mac Photos to correct dates and renamed with ExifRenamer by camera, site, and date to elimate any duplicate names. 
 
-Photos will be annotated with bounding boxes for each beaver instance using the Supervisely Community Edition Platform. Annotations will be output as json files. Data will be stored using cloud storage from either Google Cloud, AWS, or Azure. 
+Photos were annotated with bounding boxes for each animal instance using LabelImg. Annotations were output as xml files. Annotation files and images were split into train and test sets for images with beaver instances and for the whole dataset. Data was converted to Tensorflow Records for modeling. All data was stored in a Google cloud bucket.
 
 ## Modeling
-The data will be split into train and test sets. There is new data coming in every week and that will serve as a validation set. My initial model used transfer learning with a Mask R-CNN model with weights from the MS COCO object detection dataset. I will also try other models.
+Models were trained on the data using transfer learning with the Tensorflow Object Detection API. Models were trained until total loss was less than two. Three different models are be tested, they are as follows:
+* ssd_
 
 ## Evaluation
 I will report both the mean average precision score and cross entropy loss, on training and test data. I don't want to miss any beaver photos so I will choose classification thresholds that maximize recall for beavers.
